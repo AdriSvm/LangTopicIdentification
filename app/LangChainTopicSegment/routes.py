@@ -28,17 +28,23 @@ def SegmentTopics():
         return jsonify({'error': 'No OpenAI API key provided nor on login'}), 400
 
     logger.info("All data received, starting process")
-    docs,pr = Processer(text,openai_api_key=openai_api_key)
-    logger.info(f"Docs obtained, {len(docs)}")
-    unified = DocumentUnifier(docs,pr)
-    logger.info(f"Docs unifying by {tipe}")
-    if tipe == 'CATEGORY':
-        docs = unified.unify_by_category()
-    elif tipe == 'TOPIC':
-        docs = unified.unify_by_topic()
-    elif tipe == 'SUBTOPIC':
-        docs = unified.unify_by_subtopic()
-    logger.info(f"Docs unified by {tipe}, total: {len(docs)} topics")
+    try:
+        docs,pr = Processer(text,openai_api_key=openai_api_key)
+        logger.info(f"Docs obtained, {len(docs)}")
+        unified = DocumentUnifier(docs,pr)
+        logger.info(f"Docs unifying by {tipe}")
+        if tipe == 'CATEGORY':
+            docs = unified.unify_by_category()
+        elif tipe == 'TOPIC':
+            docs = unified.unify_by_topic()
+        elif tipe == 'SUBTOPIC':
+            docs = unified.unify_by_subtopic()
+        logger.info(f"Docs unified by {tipe}, total: {len(docs)} topics")
+
+    except Exception as e:
+        logger.error(f"Error processing text: {str(e)}")
+        return jsonify({'error': f'Error processing text, error: {str(e)}'}), 500
+
     return json.dumps({'result': docs}), 200
 
 
