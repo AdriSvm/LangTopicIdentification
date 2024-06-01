@@ -42,6 +42,7 @@ Flask API diseñada para implementar un identificador de topicos en el entorno d
 | Parameter | Type     | Description                       |
 | :-------- | :------- | :-------------------------------- |
 | `text` | `string` | **Required**. The whole text to be identified |
+| `OPENAI_API_KEY` | `string` |**Required** Your OPENAI_API_KEY |
 | `parse` | `string` | **Required**. The level of parsing needed: CATEGORY/TOPIC/SUBTOPIC |
 
 ##### The parse type is essential for getting more concise or more general joins of news, CATEGORY will refer to politics/sports/etc, topic is a more concise like Political Elections Procedure, and subtopic even more concise like Catalan Elections Scandal
