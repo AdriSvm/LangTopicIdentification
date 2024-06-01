@@ -11,7 +11,7 @@ Flask API diseñada para implementar un identificador de topicos en el entorno d
 #### Register
 
 ```http
-  GET /register
+  POST /register
 ```
 
 | Parameter | Type     | Description                |
@@ -24,7 +24,7 @@ Flask API diseñada para implementar un identificador de topicos en el entorno d
 #### Log in
 
 ```http
-  GET /login
+  POST /login
 ```
 
 | Parameter | Type     | Description                       |
